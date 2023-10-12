@@ -367,10 +367,12 @@ class tile2patch:
                                   #'OUTPUT':'grid_' + feature["name"]}
                                   #'OUTPUT':'grid_' + result[0]}
                         out1 = processing.run('native:creategrid', params)
+                        print(out1)
 
                         # add to layers
                         #grid = QgsVectorLayer(out1['OUTPUT'], 'grid_' + feature["name"], 'ogr')
                         grid = QgsVectorLayer(out1['OUTPUT'], 'grid_' + feature[shpAttributeName], 'ogr')
+                        print(grid)
                         QgsProject().instance().addMapLayer(grid)
                         
                         # Create the symbol with the specified properties
