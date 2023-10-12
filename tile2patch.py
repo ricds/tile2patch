@@ -246,26 +246,27 @@ class tile2patch:
                 
            
             # check if field exists in the shapefile
-            field_name = "name"
+            shpAttributeName = self.dlg.shpAttributeBox.text()
+            #field_name = "name"
+            field_name = shpAttributeName
             layer = iface.activeLayer() # Gives you the layer you have selected in the Layers Panel
             print(layer)
+            
+            # determine if we have anything selected
+            haveSelection = len(layer.selectedFeatureIds()) > 0
 
             # check if object is vector
             proceed = False;
             if isinstance(layer, QgsVectorLayer):
-                proceed=True
-
-            # if vector, get field names
-            if proceed:
                 field_index = layer.fields().indexFromName(field_name)
-            #print(field_index)
                 # check if we have the correct attribute
                 if field_index == -1:
                     #print("The field {} does not exist in layer {}!".format(field_name, layer.name()))
                     proceed=False;
                 else: 
                     #print("The field {} exists in layer {}!".format(field_name, layer.name()))
-                    proceed=True;
+                    if haveSelection:
+                        proceed=True;
             print(proceed);
 
             # proceed only if we have the correct shapefile with the 'name' attribute
@@ -282,7 +283,8 @@ class tile2patch:
                 print(temp_layer)
    
                 # specify your target field
-                result = QgsVectorLayerUtils.getValues(temp_layer, "name")[0]
+                #result = QgsVectorLayerUtils.getValues(temp_layer, "name")[0]
+                result = QgsVectorLayerUtils.getValues(temp_layer, shpAttributeName)[0]
 
                 # print name of the tile
                 print(result)
@@ -328,7 +330,8 @@ class tile2patch:
                     
                     # iterate through features to create
                     for feature in temp_layer.getFeatures():
-                        print(feature["name"])
+                        #print(feature["name"])
+                        print(feature[shpAttributeName])
                         # get extent of selected tile
                         extent = feature.geometry().boundingBox()
                         #extent = temp_layer.extent()
@@ -360,12 +363,14 @@ class tile2patch:
                                   'HOVERLAY':0,
                                   'VOVERLAY':0,
                                   'CRS':crs,
-                                  'OUTPUT':'grid_' + feature["name"]}
+                                  'OUTPUT':'grid_' + feature[shpAttributeName]}
+                                  #'OUTPUT':'grid_' + feature["name"]}
                                   #'OUTPUT':'grid_' + result[0]}
                         out1 = processing.run('native:creategrid', params)
 
                         # add to layers
-                        grid = QgsVectorLayer(out1['OUTPUT'], 'grid_' + feature["name"], 'ogr')
+                        #grid = QgsVectorLayer(out1['OUTPUT'], 'grid_' + feature["name"], 'ogr')
+                        grid = QgsVectorLayer(out1['OUTPUT'], 'grid_' + feature[shpAttributeName], 'ogr')
                         QgsProject().instance().addMapLayer(grid)
                         
                         # Create the symbol with the specified properties
