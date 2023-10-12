@@ -6,7 +6,7 @@
 name=tile2patch
 qgisMinimumVersion=3.0
 description=create patches from tiles
-version=0.2
+version=0.3
 author=Ricardo Dalangol
 email=ricds@hotmail.com
 

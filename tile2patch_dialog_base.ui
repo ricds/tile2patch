@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>443</width>
+    <height>348</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>260</y>
+     <y>300</y>
      <width>341</width>
      <height>32</height>
     </rect>
@@ -59,7 +59,7 @@
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>220</y>
+     <y>260</y>
      <width>241</width>
      <height>22</height>
     </rect>
@@ -69,7 +69,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>220</y>
+     <y>260</y>
      <width>101</width>
      <height>16</height>
     </rect>
@@ -108,7 +108,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>150</y>
+     <y>200</y>
      <width>271</width>
      <height>20</height>
     </rect>
@@ -136,7 +136,7 @@
   <widget class="QLineEdit" name="shpAttributeBox">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>200</x>
      <y>110</y>
      <width>113</width>
      <height>22</height>
@@ -150,7 +150,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>200</y>
+     <y>240</y>
      <width>141</width>
      <height>16</height>
     </rect>
@@ -170,6 +170,45 @@
    </property>
    <property name="text">
     <string>Configuration:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="dirBox">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>150</y>
+     <width>113</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>150</y>
+     <width>251</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Directory for grids (empty means temporary):</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>170</y>
+     <width>251</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>e.g. C:/grid/      (include the / by the end)</string>
    </property>
   </widget>
  </widget>

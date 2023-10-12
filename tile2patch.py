@@ -350,7 +350,25 @@ class tile2patch:
                         # get crs of the selected layer
                         #crs = temp_layer.crs().toWkt()
                         #print(crs)
-
+                        
+                        # read the directory from the UI
+                        dir_name = self.dlg.dirBox.text()
+                        
+                        import os
+                        #dir is not keyword
+                        def makemydir(whatever):
+                          try:
+                            os.makedirs(whatever)
+                          except OSError:
+                            pass
+                          # let exception propagate if we just can't
+                          # cd into the specified directory
+                          os.chdir(whatever)
+                        
+                        # create dir if we have a dir
+                        if len(dir_name) > 0:
+                            makemydir(dir_name)
+                        
                         # run grid
                         #crs = QgsProject().instance().crs().toWkt() # it is EPSG:3857
                         params = {'TYPE':2,
@@ -363,7 +381,7 @@ class tile2patch:
                                   'HOVERLAY':0,
                                   'VOVERLAY':0,
                                   'CRS':crs,
-                                  'OUTPUT':'grid_' + feature[shpAttributeName]}
+                                  'OUTPUT': dir_name + 'grid_' + feature[shpAttributeName]}
                                   #'OUTPUT':'grid_' + feature["name"]}
                                   #'OUTPUT':'grid_' + result[0]}
                         out1 = processing.run('native:creategrid', params)
